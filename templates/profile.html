@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Hesap Ayarları
+{% endblock title %}
+
+{% block body %}
+
+{% if form %}
+
+{% from "includes/formhelpers.html" import render_field %}
+
+<form method = "post">
+    {{ render_field(form.name,class="form-control") }}
+    {{ render_field(form.username,class="form-control") }}
+    {{ render_field(form.email,class="form-control") }}
+    <button class="btn btn-primary" type="submit">Güncelle</button>
+    <a href="/changePassword" class="btn btn-warning">Şifreyi Güncelle</a>
+</form>
+
+{% else %}
+<div class="alert alert-danger">Bir Hata oluştu</div>
+{% endif %}
+{% endblock body %}

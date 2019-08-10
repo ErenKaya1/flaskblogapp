@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Anasayfa
+{% endblock title %}
+
+{% block body %}
+<h2 class="h2">Anasayfa</h2>
+<hr class="mb-5 border-dark">
+{% if data %}
+
+<div class="row">
+    <div class="col-md-8">
+        {% for i in data %}
+            <div class="card mb-5 shadow">
+                <div class="card-header">
+                    <h4 class="card-title">{{ i.title }}</h4>
+                    <p>{{ i.created_date }}</p>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ i.content|safe }}</p>
+                </div>
+                <div class="card-footer">
+                    <p>{{ i.author }}</p>
+                    <a class="btn btn-outline-secondary" href="/Article/{{ i.id }}">Daha fazla</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="col-md-4"></div>
+</div>
+{% else %}
+<div class="alert alert-danger">Makaleler yüklenirken bir hata meydana geldi.</div>
+{% endif %}
+{% endblock body %}

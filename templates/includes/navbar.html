@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+    <a class="navbar-brand" href="/">Blog</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/About">Hakkımızda</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Articles">Makaleler</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            {% if session["logged_in"] == True %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/Profile">Profil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Dashboard">Kontrol Paneli</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Logout">Çıkış Yap</a>
+                </li>
+                <form class="form-inline ml-3" action="/Search" method="post">
+                    <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Arama" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ara</button>
+                </form>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/Login">Giriş Yap</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Register">Kayıt Ol</a>
+                </li>
+                <form class="form-inline ml-3" action="/Search" method="post">
+                    <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Ara..." aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ara</button>
+                </form>
+            {% endif %}
+        </ul>
+    </div>
+</nav>

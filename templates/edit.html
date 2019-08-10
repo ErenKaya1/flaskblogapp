@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Makale Güncelle
+{% endblock title %}
+
+{% block body %}
+<h3>Makele Güncelle</h3>
+<hr>
+
+{% from "includes/formhelpers.html" import render_field %}
+
+<form method = "post">
+    {{ render_field(form.title,class="form-control")}}
+    {{ render_field(form.content,class="form-control")}}
+    <div>
+        <label for="onay"><strong>Makale onaylansın mı?</strong></label>
+        <input type="checkbox" name="onay" id="onay">
+    </div>
+    <div>
+        <label for="anasayfa"><strong>Makale anasayfaya eklensin mi?</strong></label>
+        <input type="checkbox" name="anasayfa" id="onay">
+    </div>
+    <button class="btn btn-success" type="submit" class="d-block">Güncelle</button>
+</form>
+
+{% endblock body %}

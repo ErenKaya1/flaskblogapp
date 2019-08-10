@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Kontrol Paneli
+{% endblock title %}
+
+{% block body %}
+<h3>Kontrol Paneli</h3>
+<small><strong>Hoşgeldin {{ session["username"] }}</strong></small>
+<hr>
+
+{% if data %}
+
+<a href="/addArticle" class="btn btn-success mb-4">Makale Oluştur</a>
+
+<div class="row">
+
+    <div class="col-md-12">
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr class="bg-info text-light">
+                    <th style="width:5%;">Id</th>
+                    <th style="width:40%;">Makale Başlığı</th>
+                    <th style="width:15%;">Eklenme Tarihi</th>
+                    <th style="width:10%;">Onay</th>
+                    <th style="width:10%;">Anasayfa</th>
+                    <th style="width:20%;">Seçenekler</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in data %}
+                <tr>
+                    <td><strong>{{ i.id }}</strong></td>
+                    <td>{{ i.title }}</td>
+                    <td style="font-size:15px;">{{ i.created_date }}</td>
+                    <td>
+                        {% if i.onay==true %}
+                        <span class="btn btn-success btn-sm">Onaylandı</span>
+                        {% else %}
+                        <span class="btn btn-danger btn-sm">Onaylanmadı</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if i.anasayfa==true %}
+                        <span class="btn btn-success btn-sm">Onaylandı</span>
+                        {% else %}
+                        <span class="btn btn-danger btn-sm">Onaylanmadı</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="/Article/{{ i.id }}" class="btn btn-primary btn-sm">Detaylar</a>
+                        <a href="/Edit/{{ i.id }}" class="btn btn-warning btn-sm">Güncelle</a>                    
+                        <a href="/Delete/{{ i.id }}" class="btn btn-danger btn-sm">Sil</a>                    
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% else %}
+<div class="alert alert-danger">Henüz makale oluşturmadınız.</div>
+<a href="/addArticle" class="btn btn-success">Makale Oluştur</a>
+{% endif %}
+
+{% endblock body %}

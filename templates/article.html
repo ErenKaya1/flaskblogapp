@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Makale
+{% endblock title %}
+
+{% block body %}
+{% if data %}
+<h4>{{ data.title }}</h4>
+<hr>
+Yazar: {{ data.author }}
+<hr>
+Tarih: {{ data.created_date }}
+<hr>
+{{ data.content|safe }}
+{% else %}
+<div class="alert alert-danger"><strong>Blog bulunamadı.</strong></div>
+{% endif %}
+
+{% endblock body %}
+
